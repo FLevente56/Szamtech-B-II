@@ -6,27 +6,30 @@
 #define _CTR_NONSTDC_NO_DEPRECATE
 #define WIN32_LEAN_AND_MEAN
 
+#include "basic.h"
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
 
-typedef struct Room {
-	char roomID;
-	unsigned nrofenemy;
-	unsigned strofenemy;
-}Room;
 
 typedef struct Map {
-	Room*** palya;
+	char* palya;
 	int x;
 	int y;
+	int poz;
+	int cel;
+	bool mozg;
 }Map;
 
 Map* CreateMap(char const * file);
-Room* CreateRoom(char id, unsigned i,unsigned str);
-void PrintRoom(Room szoba);
+char* readMap(FILE* fin, int x, int y);
+int returnx(Map* m);
+int returny(Map* m);
+void PrintRoom(char* szoba);
 void PrintMap(Map* map);
-//void DestroyRoom(Room* szoba);
 void DestroyMap(Map* map);
-//Map* Move(Map field, char dir);
+Map* valasztmap();
+int poz(Map* map);
+int cel(Map* map);
+Map* move(Map* map,char d);
 #endif// !MAP_H
